@@ -19,7 +19,7 @@ class AuthController extends Controller
     {
         // Return the view for the registration form.
 
-        return view('auth.register');
+        return view('auth.pages.register');
     }
     /**
      * Handle the registration request.
@@ -48,7 +48,7 @@ class AuthController extends Controller
     {
         // Return the view for the login form.
 
-        return view('auth.login');
+        return view('auth.pages.login');
     }
     /**
      * Handle the login request.
