@@ -35,7 +35,7 @@ The `accounts` table includes the following fields:
 1. **Clone the Repository**:
 
     ```bash
-    git clone https://github.com/umair-afzal-uat/Edge_Task.git
+    git clone https://github.com/umair-afzal-uat/Edge-Task.git
     cd Edge_Task
     ```
 
