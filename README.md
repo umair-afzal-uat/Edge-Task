@@ -62,6 +62,60 @@ The `accounts` table includes the following fields:
 
 Visit `http://localhost:8000` to see your new authentication portal in action!
 
+## Accessing the Statamic Control Panel
+
+To access the Statamic Control Panel, navigate to the following URL in your web browser:
+
+```
+http://localhost:8000/cp
+```
+
+## Creating a User in Statamic
+
+To create a new user in Statamic, you can use the command line interface. Make sure you have access to your terminal and are in the root directory of your Statamic project.
+
+### Step 1: Open Terminal
+
+Open your terminal application and navigate to your Statamic project directory:
+
+```bash
+cd /path/to/your/Edge_Task/project
+```
+
+### Step 2: Create a New User
+
+Run the following command to create a new user:
+
+```bash
+php please make:user
+```
+
+You will be prompted to enter the following details:
+
+-   **Email**: The email address for the new user.
+-   **Password**: A secure password for the new user.
+-   **Name**: The full name of the user.
+-   **Role**: Assign a role to the user (e.g., admin, editor).
+
+### Step 3: Confirm User Creation
+
+After you have entered the required information, the new user will be created. You can now log in to the Control Panel using the new user's credentials.
+
+## Additional Commands
+
+Here are some useful commands related to user management in Statamic:
+
+-   **List Users**: To view all users, you can use:
+
+    ```bash
+    php please users:list
+    ```
+
+-   **Delete a User**: To delete a user, specify the user ID:
+    ```bash
+    php please users:delete {user_id}
+    ```
+
 ## Git Commit Guidelines
 
 To maintain a clean and organized codebase, please follow these Git commit guidelines:
