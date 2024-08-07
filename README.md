@@ -1,66 +1,102 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Authentication Portal with Statamic & Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
 
-## About Laravel
+Welcome to the Authentication Portal project! This repository contains a simple yet robust authentication system built using Statamic and Laravel. The portal allows users to register, log in, and log out, while providing both public and member-only pages. It utilizes a MySQL database to manage user accounts securely.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+-   **User Authentication**: Users can create accounts, log in, and log out independently of Statamic CMS users.
+-   **Access Control**: The application features public pages accessible to everyone and member-only pages that require authentication.
+-   **MySQL Database**: User accounts are stored in a MySQL database with a dedicated `accounts` table.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Database Schema
 
-## Learning Laravel
+The `accounts` table includes the following fields:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Field    | Type              | Description                        |
+| -------- | ----------------- | ---------------------------------- |
+| id       | INT (Primary Key) | Unique identifier for each account |
+| email    | VARCHAR           | User's email address               |
+| password | VARCHAR           | Hashed password for security       |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Getting Started
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Prerequisites
 
-## Laravel Sponsors
+-   PHP >= 8.2
+-   Composer
+-   MySQL
+-   Laravel >= 11.x
+-   Statamic
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Installation
 
-### Premium Partners
+1. **Clone the Repository**:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    ```bash
+    git clone https://github.com/umair-afzal-uat/Edge_Task.git
+    cd Edge_Task
+    ```
 
-## Contributing
+2. **Install Dependencies**:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    ```bash
+    composer install
+    ```
 
-## Code of Conduct
+3. **Set Up Environment**:
+   Copy the `.env.example` file to `.env` and configure your database settings.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. **Run Migrations**:
+   Create the database and run the migrations to set up the `accounts` table.
 
-## Security Vulnerabilities
+    ```bash
+    php artisan migrate
+    ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. **Start the Development Server**:
+    ```bash
+    php artisan serve
+    ```
 
-## License
+Visit `http://localhost:8000` to see your new authentication portal in action!
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Git Commit Guidelines
+
+To maintain a clean and organized codebase, please follow these Git commit guidelines:
+
+-   **Semantic Prefixes**: Use prefixes like `feat`, `fix`, `docs`, `wip`, and `chore` to categorize your commits.
+-   **Imperative, Lowercase, Descriptive**: Write commit messages in the imperative mood and keep them lowercase.
+-   **Atomic Commits**: Each commit should represent a single logical change.
+
+### Example Commit Messages
+
+-   `feat: implement user registration functionality`
+-   `fix: validate email format during registration`
+-   `docs: update README with installation instructions`
+
+## Design Process
+
+### Planning
+
+The project began with a clear understanding of the requirements: a simple authentication system with user management capabilities. We outlined the necessary features and designed the database schema to support these functionalities.
+
+### Implementation
+
+1. **User Registration**: Developed a registration form that captures user email and password, ensuring password hashing for security. Laravel's request validation was utilized to ensure that all input data meets the required criteria.
+2. **Login and Logout**: Implemented login functionality with session management and a logout feature to terminate user sessions. Laravel resource responses were employed to provide structured feedback to the client during these processes.
+
+3. **Access Control**: Created middleware to restrict access to member-only pages, ensuring that only authenticated users can view specific content.
+
+### Frontend Design
+
+The frontend design focuses on usability and responsiveness. We utilized Laravel Blade templates to create a clean and intuitive user interface that enhances user experience.
+
+## Conclusion
+
+This project showcases the integration of Statamic and Laravel to create a functional authentication portal. We hope you find this repository useful and informative. Feel free to contribute or reach out with any questions!
+
+---
+
+Thank you for checking out the Authentication Portal project! Happy coding!
