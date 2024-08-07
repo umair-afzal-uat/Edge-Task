@@ -95,7 +95,7 @@ You will be prompted to enter the following details:
 -   **Email**: The email address for the new user.
 -   **Password**: A secure password for the new user.
 -   **Name**: The full name of the user.
--   **Role**: Assign a role to the user (e.g., admin, editor).
+-   **Role**: Assign a role to the user (e.g., admin, editor) (Hint: choosed super user for full statamic access).
 
 ### Step 3: Confirm User Creation
 
