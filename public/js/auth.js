@@ -18,6 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     toastr.success(
                         "Registration successful! Welcome, " + data.email
                     );
+
+                    // Delay the redirection to allow the user to see the toast message
+                    setTimeout(function () {
+                        window.location.href = "/dashboard";
+                    }, 2000); // 2000 milliseconds = 2 seconds
                 } else {
                     // Extract the message and errors from the response data
                     let errorMessage = "Registration failed: " + data.message;
@@ -60,7 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     toastr.success(
                         "Login successful! Welcome back, " + data.email
                     );
-                    // Redirect or update the UI as needed
+
+                    // Delay the redirection to allow the user to see the toast message
+                    setTimeout(function () {
+                        window.location.href = "/dashboard";
+                    }, 2000); // 2000 milliseconds = 2 seconds
                 } else {
                     toastr.error("Login failed: " + data.error);
                 }

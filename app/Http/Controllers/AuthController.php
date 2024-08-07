@@ -35,6 +35,10 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
+
+        // Store the account ID in the session.
+        session(['account_id' => $account->id]);
+
         // Return a JSON response with the created account and a 201 status code.
 
         return response()->json(new AccountResource($account), 201);

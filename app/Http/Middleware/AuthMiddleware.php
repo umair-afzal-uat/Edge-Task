@@ -15,7 +15,8 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) {
+          // Check if 'account_id' exists in the session
+          if (!$request->session()->has('account_id')) {
             return redirect('/login');
         }
         return $next($request);
