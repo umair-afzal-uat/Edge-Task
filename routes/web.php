@@ -13,4 +13,6 @@ Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::group(['middleware' => 'auth.check'], function () {
     Route::get('/dashboard', [AdminController::class, 'index']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+
 });

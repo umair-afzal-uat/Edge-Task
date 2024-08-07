@@ -77,4 +77,17 @@ class AuthController extends Controller
         // Return a JSON response with an error message and a 401 status code if credentials are invalid.
         return response()->json(['error' => 'Invalid credentials.'], 401);
     }
+    /**
+     * Handle the logout request.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        // Remove the account ID from the session.
+        session()->forget('account_id');
+
+        // Return a JSON response indicating successful logout with a 200 status code.
+        return response()->json(['message' => 'Successfully logged out.'], 200);
+    }
 }
