@@ -88,6 +88,6 @@ class AuthController extends Controller
         session()->forget('account_id');
 
         // Return a JSON response indicating successful logout with a 200 status code.
-        return response()->json(['message' => 'Successfully logged out.'], 200);
+        return redirect()->route('login')->with('message', 'Successfully logged out.');
     }
 }

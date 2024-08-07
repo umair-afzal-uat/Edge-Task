@@ -11,8 +11,8 @@ Route::get('register', [AuthController::class, 'showRegistrationForm'])->name('r
 Route::post('register', [AuthController::class, 'register']);
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout']);
 Route::group(['middleware' => 'auth.check'], function () {
     Route::get('/dashboard', [AdminController::class, 'index']);
-    Route::post('/logout', [AuthController::class, 'logout']);
 
 });
