@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\AccountResource;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
-use App\Repositories\AccountRepositoryInterface;
-use Illuminate\Support\Facades\Hash;
+use App\Services\AuthService;
+use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
 {
-    protected $accountRepository;
+    protected $authService;
 
-    public function __construct(AccountRepositoryInterface $accountRepository)
+    public function __construct(AuthService $authService)
     {
-        $this->accountRepository = $accountRepository;
+        $this->authService = $authService;
     }
 
     /**
@@ -24,7 +23,6 @@ class AuthController extends Controller
      */
     public function showRegistrationForm()
     {
-        // Return the view for the registration form.
         return view('auth.pages.register');
     }
 
@@ -34,19 +32,11 @@ class AuthController extends Controller
      * @param \App\Http\Requests\RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request): JsonResponse
     {
-        // Create a new account with the provided email and hashed password.
-        $account = $this->accountRepository->create([
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
+        $accountResource = $this->authService->register($request->validated());
 
-        // Store the account ID in the session.
-        session(['account_id' => $account->id]);
-
-        // Return a JSON response with the created account and a 201 status code.
-        return response()->json(new AccountResource($account), 201);
+        return response()->json($accountResource, 201);
     }
 
     /**
@@ -56,7 +46,6 @@ class AuthController extends Controller
      */
     public function showLoginForm()
     {
-        // Return the view for the login form.
         return view('auth.pages.login');
     }
 
@@ -66,35 +55,26 @@ class AuthController extends Controller
      * @param \App\Http\Requests\LoginRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): JsonResponse
     {
-        // Retrieve the account based on the provided email address.
-        $account = $this->accountRepository->findByEmail($request->email);
+        $accountResource = $this->authService->login($request->validated());
 
-        // Check if the account exists and the provided password matches the stored hashed password.
-        if ($account && Hash::check($request->password, $account->password)) {
-            // Store the account ID in the session.
-            session(['account_id' => $account->id]);
-
-            // Return a JSON response with the account details and a 200 status code.
-            return response()->json(new AccountResource($account), 200);
+        if ($accountResource) {
+            return response()->json($accountResource, 200);
         }
 
-        // Return a JSON response with an error message and a 401 status code if credentials are invalid.
         return response()->json(['error' => 'Invalid credentials.'], 401);
     }
 
     /**
      * Handle the logout request.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function logout()
     {
-        // Remove the account ID from the session.
-        session()->forget('account_id');
+        $this->authService->logout();
 
-        // Return a JSON response indicating successful logout with a 200 status code.
         return redirect()->route('login')->with('message', 'Successfully logged out.');
     }
 }
