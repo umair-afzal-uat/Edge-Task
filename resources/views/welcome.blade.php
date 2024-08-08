@@ -924,7 +924,7 @@
         }
 
         .waviy span {
-            font-family: 'Alfa Slab One', cursive;
+            font-family: cursive;
             position: relative;
             display: inline-block;
             color: #fff;
@@ -932,6 +932,9 @@
             animation: waviy 1s infinite;
             animation-delay: calc(.1s * var(--i));
 
+        }
+        .main-anchor {
+            font-family: cursive;
         }
 
         /* keyframes */
@@ -974,7 +977,7 @@
             </div>
             @if (session()->has('account_id'))
             <nav class="-mx-3 flex flex-1 justify-end">
-                <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 text-white  ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                <a href="{{ url('/dashboard') }}" class="main-anchor rounded-md px-3 py-2 text-white  ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                     Dashboard
                 </a>
             </nav>
