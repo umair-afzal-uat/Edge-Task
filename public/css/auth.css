@@ -2,18 +2,104 @@ body{
     margin: 0;
     padding: 0;
 }
+
+/*  */
+header {
+    background: linear-gradient(270deg, rgba(243, 68, 56, 1) 6%, rgba(0, 0, 0, 1) 98%);
+    min-height: 50px;
+    box-shadow: rgba(121, 0, 0, 0.61) 0px 2px 8px 0px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 99;
+}
+.main-logo h1 {
+    margin: 0;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 35px;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+.log-btns a {
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    margin-right: 25px;
+    font-family: sans-serif;
+    background: #9b261e;
+    padding: 10px 18px;
+    box-shadow: rgba(121, 0, 0, 0.61) 0px 2px 8px 0px;
+}
+/*  */
+main {
+    position: relative;
+    height: 100vh;
+    background: #000;
+    z-index: -1;
+    padding-top: 63px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+main::after {
+    content: "";
+    position: absolute;
+    background: url(../images/background.svg);
+    background-size: contain;
+    left: 0;
+    top: 0;
+    height: 965px;
+    width: 877px;
+    background-repeat: no-repeat;
+    z-index: -1;
+    overflow: hidden;
+}
+.welcome-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+.welcome-wrap h1 {
+    margin: 0;
+}
+/*  */
 .wrapper {
-    background: #c6c6c6;
-    min-height: 100vh;
+    background: #000;
+    height: 100vh;
+    position: relative;
+    z-index: 99;
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper::after{
+    content: "";
+    position: absolute;
+    background: url(../images/background.svg);
+    background-size: contain;
+    left: 0;
+    top: 0;
+    height: 965px;
+    width: 877px;
+    background-repeat: no-repeat;
+    z-index: -1;
+    overflow: hidden;
 }
 .login-form {
-    max-width: 500px;
+    width: 500px;
     margin: 0 auto;
     background: #fff;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgb(255 0 0 / 45%) 0px 5px 15px;
     padding-bottom: 40px;
-    position: relative;
-    top: 150px;
 }
 .form-content form {
     display: flex;
@@ -24,12 +110,12 @@ body{
     max-width: 100%;
 }
 .form-header {
-    background: #989898;
     text-align: center;
     padding: 18px 0;
     font-size: 25px;
     font-family: sans-serif;
     color: #fff;
+    background: linear-gradient(90deg, rgba(243, 68, 56, 1) 6%, rgba(0, 0, 0, 1) 98%);
 }
 .form-content {
     margin-top: 40px;
@@ -45,15 +131,13 @@ body{
     outline: none;
 }
 .form-content form button:hover {
-    background: #e3e3e3;
-    border: 1px solid #6b6b6b;
-    color: #000;
+    background: linear-gradient(90deg, rgba(243, 68, 56, 1) 6%, rgba(0, 0, 0, 1) 98%);
 }
 .form-content form button {
     height: 50px;
     transition: 0.4s ease-in-out;
     width: 200px;
-    background: #989898;
+    background: #000;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -65,10 +149,47 @@ body{
     margin-left: auto;
     display: block;
     margin-right: 25px;
-    color: #989898;
+    color: #000;
 }
 
+
+.waviy {
+    position: relative;
+    -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, .2));
+    font-size: 60px;
+}
+
+.waviy span {
+    font-family: 'Alfa Slab One', cursive;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    text-transform: uppercase;
+    animation: waviy 1s infinite;
+    animation-delay: calc(.1s * var(--i));
+
+}
+
+/* keyframes */
+@keyframes waviy {
+
+    0%,
+    40%,
+    100% {
+        transform: translateY(0)
+    }
+
+    20% {
+        transform: translateY(-20px)
+    }
+} 
+
 /* responsive */
+@media(max-width:768px) {
+    .waviy {
+        font-size: 40px;
+    }
+}
 @media (max-width: 575px){
     .login-form {
         max-width: 100%;
@@ -98,5 +219,10 @@ body{
     .form-header {
         padding: 16px 0;
         font-size: 20px;
+    }
+}
+@media(max-width:480px) {
+    .waviy {
+        font-size: 22px;
     }
 }

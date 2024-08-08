@@ -11,9 +11,6 @@
 </head>
 
 <body>
-    <nav>
-        <!-- Navigation content -->
-    </nav>
     <div class="container">
         @yield('content') <!-- This is where the login or registration content will be injected -->
     </div>
