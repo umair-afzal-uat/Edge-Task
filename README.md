@@ -36,7 +36,7 @@ The `accounts` table includes the following fields:
 
     ```bash
     git clone https://github.com/umair-afzal-uat/Edge-Task.git
-    cd Edge_Task
+    cd Edge-Task
     ```
 
 2. **Install Dependencies**:
@@ -66,7 +66,7 @@ Visit `http://localhost:8000` to see your new authentication portal in action!
 
 To access the Statamic Control Panel, navigate to the following URL in your web browser:
 
-```
+```bash
 http://localhost:8000/cp
 ```
 
@@ -79,12 +79,16 @@ To create a new user in Statamic, you can use the command line interface. Make s
 Open your terminal application and navigate to your Statamic project directory:
 
 ```bash
-cd /path/to/your/Edge_Task/project
+cd /path/to/your/Edge-Task/project
 ```
 
 ### Step 2: Create a New User
 
 Run the following command to create a new user:
+
+```bash
+php please pro:enable
+```
 
 ```bash
 php please make:user
