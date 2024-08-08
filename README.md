@@ -142,10 +142,15 @@ The project began with a clear understanding of the requirements: a simple authe
 
 ### Implementation
 
-1. **User Registration**: Developed a registration form that captures user email and password, ensuring password hashing for security. Laravel's request validation was utilized to ensure that all input data meets the required criteria.
-2. **Login and Logout**: Implemented login functionality with session management and a logout feature to terminate user sessions. Laravel resource responses were employed to provide structured feedback to the client during these processes.
+1. **User Registration**: Developed a registration form that captures user email and password, ensuring password hashing for security. Laravel's request validation was utilized to ensure that all input data meets the required criteria. The registration logic is encapsulated within a service layer to maintain separation of concerns and improve testability.
+
+2. **Login and Logout**: Implemented login functionality with session management and a logout feature to terminate user sessions. Laravel resource responses were employed to provide structured feedback to the client during these processes. The login and logout logic is managed by a dedicated service class to streamline controller actions and handle business logic efficiently.
 
 3. **Access Control**: Created middleware to restrict access to member-only pages, ensuring that only authenticated users can view specific content.
+
+4. **Repository Pattern**: Utilized the repository pattern to separate business logic from data access logic. This pattern provides a clean structure for accessing and managing data and facilitates better testability and maintainability.
+
+5. **Service Pattern**: Leveraged the service pattern to manage controller logic, delegating business logic to service classes. This approach improves code organization and makes the application easier to maintain and extend.
 
 ### Frontend Design
 
