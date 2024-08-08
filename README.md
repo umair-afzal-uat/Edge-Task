@@ -105,20 +105,24 @@ You will be prompted to enter the following details:
 
 After you have entered the required information, the new user will be created. You can now log in to the Control Panel using the new user's credentials.
 
-## Additional Commands
+## Live Demo
 
-Here are some useful commands related to user management in Statamic:
+To access the custom authentication, navigate to the following URL in your web browser:
 
--   **List Users**: To view all users, you can use:
+```bash
+http://18.119.124.117
+```
 
-    ```bash
-    php please users:list
-    ```
+To access the Statamic Control Panel, navigate to the following URL in your web browser:
 
--   **Delete a User**: To delete a user, specify the user ID:
-    ```bash
-    php please users:delete {user_id}
-    ```
+```bash
+http://18.119.124.117/cp
+```
+
+```Use following credentials for Statamic login
+Email: 'umair.afzal@edge.com'
+Password: 'Pa5306DyqlkTTy3'
+```
 
 ## Git Commit Guidelines
 
