@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Resources\AccountResource;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
-use App\Models\Account;
+use App\Repositories\AccountRepositoryInterface;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    protected $accountRepository;
+
+    public function __construct(AccountRepositoryInterface $accountRepository)
+    {
+        $this->accountRepository = $accountRepository;
+    }
+
     /**
      * Show the registration form.
      *
@@ -18,9 +25,9 @@ class AuthController extends Controller
     public function showRegistrationForm()
     {
         // Return the view for the registration form.
-
         return view('auth.pages.register');
     }
+
     /**
      * Handle the registration request.
      *
@@ -30,8 +37,7 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         // Create a new account with the provided email and hashed password.
-
-        $account = Account::create([
+        $account = $this->accountRepository->create([
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
@@ -40,9 +46,9 @@ class AuthController extends Controller
         session(['account_id' => $account->id]);
 
         // Return a JSON response with the created account and a 201 status code.
-
         return response()->json(new AccountResource($account), 201);
     }
+
     /**
      * Show the login form.
      *
@@ -51,9 +57,9 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         // Return the view for the login form.
-
         return view('auth.pages.login');
     }
+
     /**
      * Handle the login request.
      *
@@ -63,7 +69,7 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         // Retrieve the account based on the provided email address.
-        $account = Account::where('email', $request->email)->first();
+        $account = $this->accountRepository->findByEmail($request->email);
 
         // Check if the account exists and the provided password matches the stored hashed password.
         if ($account && Hash::check($request->password, $account->password)) {
@@ -77,6 +83,7 @@ class AuthController extends Controller
         // Return a JSON response with an error message and a 401 status code if credentials are invalid.
         return response()->json(['error' => 'Invalid credentials.'], 401);
     }
+
     /**
      * Handle the logout request.
      *
